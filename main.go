@@ -2,12 +2,12 @@
 package main
 
 import (
-	"encoding/json"
+	_ "encoding/json"
 	"github.com/gorilla/mux"
 	"log"
-	"math/rand"
+	_ "math/rand"
 	"net/http"
-	"strconv"
+	_ "strconv"
 )
 
 // Book Struct (Model).
@@ -23,6 +23,32 @@ type Book struct {
 type Author struct {
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
+}
+
+// Get All Books.
+//	All route handlers must accept ResponseWriter and Request parameters.
+func getBooks(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Get Single Book.
+func getBook(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Create Book.
+func createBook(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Update Book.
+func updateBook(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Delete Book.
+func deleteBook(w http.ResponseWriter, r *http.Request) {
+
 }
 
 func main() {
