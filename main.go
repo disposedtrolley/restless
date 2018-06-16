@@ -2,6 +2,7 @@
 package main
 
 import (
+	"encoding/json"
 	_ "encoding/json"
 	"github.com/gorilla/mux"
 	"log"
@@ -32,7 +33,11 @@ var books []Book
 // Get All Books.
 //	All route handlers must accept ResponseWriter and Request parameters.
 func getBooks(w http.ResponseWriter, r *http.Request) {
+	// Set Content-Type header to JSON.
+	w.Header().Set("Content-Type", "application/json")
 
+	// Encode the books array as JSON and write the response.
+	json.NewEncoder(w).Encode(books)
 }
 
 // Get Single Book.
