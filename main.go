@@ -76,7 +76,20 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 
 // Delete Book.
 func deleteBook(w http.ResponseWriter, r *http.Request) {
+	// Set Content-Type header to JSON.
+	w.Header().Set("Content-Type", "application/json")
 
+	params := mux.Vars(r)
+
+	for index, item := range books {
+		if item.ID == params["id"] {
+			// Array slicing to remove the book.
+			books = append(books[:index], books[index+1:]...)
+			break
+		}
+	}
+
+	json.NewEncoder(w).Encode(books)
 }
 
 func main() {
