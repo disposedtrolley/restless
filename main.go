@@ -10,6 +10,21 @@ import (
 	"strconv"
 )
 
+// Book Struct (Model).
+type Book struct {
+	// <field name> <field type> <JSON field mapping>
+	ID     string  `json:"id"`
+	ISBN   string  `json:"isbn"`
+	Title  string  `json:"title"`
+	Author *Author `json:"author"` // *Author points to another struct.
+}
+
+// Author Struct.
+type Author struct {
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+}
+
 func main() {
 	// Initialise the Mux router.
 	// 	:= creates new variables using type inference.
