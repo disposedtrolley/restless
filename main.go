@@ -25,6 +25,10 @@ type Author struct {
 	LastName  string `json:"lastName"`
 }
 
+// Initialise books var as a slice Book struct.
+// A slice is a variable-length array.
+var books []Book
+
 // Get All Books.
 //	All route handlers must accept ResponseWriter and Request parameters.
 func getBooks(w http.ResponseWriter, r *http.Request) {
@@ -55,6 +59,11 @@ func main() {
 	// Initialise the Mux router.
 	// 	:= creates new variables using type inference.
 	r := mux.NewRouter()
+
+	// Mock Data - @todo - implement DB.
+	books = append(books, Book{ID: "1", ISBN: "9780140186390", Title: "East of Eden", Author: &Author{FirstName: "John", LastName: "Steinbeck"}})
+	books = append(books, Book{ID: "2", ISBN: "9782915629217", Title: "Fahrenheit 451", Author: &Author{FirstName: "Ray", LastName: "Bradbury"}})
+	books = append(books, Book{ID: "3", ISBN: "9781471331435", Title: "1984", Author: &Author{FirstName: "George", LastName: "Orwell"}})
 
 	// Route Handlers / Endpoints.
 	r.HandleFunc("/api/books", getBooks).Methods("GET")
